@@ -10,6 +10,7 @@ class Convert2Btimap():
         self.hex_array=[]
 
     def ModifyImg(self) -> None:
+        #TODO: reisze
         retval,self.img_dst=cv.threshold(self.img_src, None,1,cv.THRESH_OTSU)
 
     def Convert2Hex(self) -> None:
@@ -27,5 +28,9 @@ class Convert2Btimap():
 
     def WriteTxt(self) -> None:
         txt=open(r"../txt/"+self.prefix+r".txt","w")
-        txt.write(str(self.hex_array))
+        #TODO: format
+        txt.write("[")
+        for each in self.hex_array:
+            txt.write(each+", ")
+        txt.write("]")
         txt.close()
