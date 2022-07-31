@@ -1,1 +1,1 @@
-__all__=['convert2bitmap']
+__all__=['ConvertImage2Bitmap']

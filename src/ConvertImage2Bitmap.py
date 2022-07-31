@@ -1,18 +1,21 @@
 import cv2 as cv
 
 
-class Convert2Btimap:
+class ConvertImage2Btimap :
 
-    def __init__(self, img_path: str):
+    def __init__(self, img_path: str, dst_size: tuple = None):
         self.img_path = img_path
         self.img_src = cv.imread(img_path, cv.CV_8UC1)
         self.prefix = img_path.split(r"/")[-1].split(r".")[0]
+        self.dst_size=dst_size
         self.img_dst = None
         self.hex_array = []
 
     def ModifyImg(self) -> None:
-        # TODO: reisze
+        if self.dst_size != None:
+            resize_dst=cv.resize(self.img_src, self.dst_size)
         retval, self.img_dst = cv.threshold(self.img_src, None, 1, cv.THRESH_OTSU)
+
 
     def Convert2Hex(self) -> None:
         (weight, height) = self.img_dst.shape
